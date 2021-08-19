@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "../components/Heading";
 import { products } from "../products";
 import styled from "styled-components";
+import Rating from "../components/Rating";
 
 const Grid = styled.div`
   margin-top: 6.5rem;
@@ -30,6 +31,8 @@ const GridImage = styled.img`
 
 const GridName = styled.div`
   display: flex;
+  align-items: center;
+  gap: 1rem;
 
   & p {
     font-weight: 500;
@@ -89,7 +92,7 @@ const PopularDishesScreen = () => {
             <GridImage src={`${product.image}`} alt={product.name} />
             <GridName>
               <p>{product.name}</p>
-              <div className="ratings"></div>
+              <Rating value={product.rating} />
             </GridName>
             <GridTitle>{product.title}</GridTitle>
             <GridPrice>PRICE ${product.price}</GridPrice>

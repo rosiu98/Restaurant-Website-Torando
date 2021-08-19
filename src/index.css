@@ -666,3 +666,8 @@ main {
   width: 24px;
   height: 24px;
 }
+
+.rating {
+  /* display: flex;
+  align-items: center; */
+}

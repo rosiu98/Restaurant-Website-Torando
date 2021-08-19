@@ -18,7 +18,7 @@ export const products = [
   {
     id: 3,
     name: "FULL BURGAR",
-    rating: "3",
+    rating: "4.5",
     title: "DOUBLE STUCK BURGER",
     price: 33,
     image: "images/zdjecie1.png",
@@ -42,7 +42,7 @@ export const products = [
   {
     id: 6,
     name: "CHICKEN",
-    rating: "2",
+    rating: "3.5",
     title: "UNLIMITED FULL CHICKEN",
     price: 66,
     image: "images/chicken.png",
