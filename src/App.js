@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from "./components/Navbar";
+import BlogScreen from "./screens/BlogScreen";
+import FooterScreen from "./screens/FooterScreen";
+import HowItWorksScreen from "./screens/HowItWorksScreen";
+import LandingScreen from "./screens/LandingScreen";
+import PopularDishesScreen from "./screens/PopularDishesScreen";
+import PopularScreen from "./screens/PopularScreen";
+import SpecialScreen from "./screens/SpecialScreen";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <LandingScreen />
+      <PopularScreen />
+      <HowItWorksScreen />
+      <PopularDishesScreen />
+      <SpecialScreen />
+      <BlogScreen />
+      <FooterScreen />
+    </>
   );
 }
 
