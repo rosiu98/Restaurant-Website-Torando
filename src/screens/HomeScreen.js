@@ -1,8 +1,26 @@
 import React from "react";
-import how from "../img/how.png";
+import Navbar from "../components/Navbar";
+import BlogScreen from "./BlogScreen";
+import FooterScreen from "./FooterScreen";
+import HowItWorksScreen from "./HowItWorksScreen";
+import LandingScreen from "./LandingScreen";
+import PopularDishesScreen from "./PopularDishesScreen";
+import PopularScreen from "./PopularScreen";
+import SpecialScreen from "./SpecialScreen";
 
 const HomeScreen = () => {
-  return <div></div>;
+  return (
+    <>
+      <Navbar />
+      <LandingScreen />
+      <PopularScreen />
+      <HowItWorksScreen />
+      <PopularDishesScreen />
+      <SpecialScreen />
+      <BlogScreen />
+      <FooterScreen />
+    </>
+  );
 };
 
 export default HomeScreen;

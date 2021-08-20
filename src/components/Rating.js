@@ -36,6 +36,7 @@ const Rating = ({ value, text }) => {
           alt="star"
         />
       </span>
+      <span>{text && text}</span>
     </div>
   );
 };

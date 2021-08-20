@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Heading from "../components/Heading";
 import { products } from "../products";
 import styled from "styled-components";
@@ -21,6 +22,17 @@ const GridItem = styled.div`
   padding: 6rem;
   background-color: #faf7f2;
   border-radius: 4rem;
+  transition: 0.4s all ease-in;
+
+  & a {
+    text-decoration: none;
+    color: var(--color-dark);
+  }
+
+  &:hover img:first-of-type {
+    transform: scale(1.1);
+    transition: 0.3s all;
+  }
 `;
 
 const GridImage = styled.img`
@@ -89,13 +101,15 @@ const PopularDishesScreen = () => {
       <Grid>
         {products.map((product) => (
           <GridItem key={product.id}>
-            <GridImage src={`${product.image}`} alt={product.name} />
-            <GridName>
-              <p>{product.name}</p>
-              <Rating value={product.rating} />
-            </GridName>
-            <GridTitle>{product.title}</GridTitle>
-            <GridPrice>PRICE ${product.price}</GridPrice>
+            <Link to={`/menu/${product.id}`}>
+              <GridImage src={`${product.image}`} alt={product.name} />
+              <GridName>
+                <p>{product.name}</p>
+                <Rating value={product.rating} />
+              </GridName>
+              <GridTitle>{product.title}</GridTitle>
+              <GridPrice>PRICE ${product.price}</GridPrice>
+            </Link>
           </GridItem>
         ))}
       </Grid>

@@ -28,21 +28,26 @@ h1 {
 nav {
   display: flex;
   align-items: center;
-  margin: 4rem 6rem 2rem 6rem;
+  padding: 4rem 6rem 2rem 6rem;
 }
 
 .active {
-  color: var(--color-yellow);
-  border-bottom: 1px solid var(--color-yellow);
+  color: var(--color-yellow) !important;
+  /* border-bottom: 1px solid var(--color-yellow); */
 }
 
 .links {
   margin-left: 8rem;
   display: flex;
   gap: 6.5rem;
-  font-size: 2.4rem;
+  font-size: 1.5rem;
   margin-right: auto;
   font-weight: 500;
+}
+
+.links a {
+  text-decoration: none;
+  color: var(--color-dark);
 }
 
 .buttons {
@@ -668,6 +673,13 @@ main {
 }
 
 .rating {
-  /* display: flex;
-  align-items: center; */
+  display: flex;
+  align-items: center;
+}
+
+.rating span:last-child {
+  margin-left: 2rem;
+  font-size: 1.6rem;
+  color: #706c61;
+  font-weight: 400;
 }

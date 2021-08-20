@@ -67,7 +67,7 @@ const FooterScreen = () => {
         <div className="footer-blog">
           <h3 className="footer-h3">RECENT BLOG</h3>
           <div className="footer-posts">
-            <img src={blogs[0].image} alt="imags" />
+            <img src={`/${blogs[0].image}`} alt="imags" />
             <div className="footer-posts-info">
               <p>{blogs[0].title}</p>
               <span>{blogs[0].date}</span>
@@ -75,7 +75,7 @@ const FooterScreen = () => {
           </div>
 
           <div className="footer-posts">
-            <img src={blogs[2].image} alt="imags" />
+            <img src={`/${blogs[2].image}`} alt="imags" />
             <div className="footer-posts-info">
               <p>{blogs[2].title}</p>
               <span>{blogs[2].date}</span>
