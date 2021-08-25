@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
 import Heading from "../components/Heading";
-import { products } from "../products";
 import styled from "styled-components";
 import Rating from "../components/Rating";
+import Loading from "../components/Loading";
 
 const Grid = styled.div`
   margin-top: 6.5rem;
@@ -80,6 +82,16 @@ export const ProductButton = styled.a`
 `;
 
 const PopularDishesScreen = () => {
+  const dispatch = useDispatch();
+
+  const productList = useSelector((state) => state.productList);
+
+  const { loading, error, products } = productList;
+
+  useEffect(() => {
+    dispatch(listProducts());
+  }, [dispatch]);
+
   return (
     <div
       style={{
@@ -98,21 +110,27 @@ const PopularDishesScreen = () => {
         <button className="category">CHICKEN</button>
       </div>
 
-      <Grid>
-        {products.map((product) => (
-          <GridItem key={product.id}>
-            <Link to={`/menu/${product.id}`}>
-              <GridImage src={`${product.image}`} alt={product.name} />
-              <GridName>
-                <p>{product.name}</p>
-                <Rating value={product.rating} />
-              </GridName>
-              <GridTitle>{product.title}</GridTitle>
-              <GridPrice>PRICE ${product.price}</GridPrice>
-            </Link>
-          </GridItem>
-        ))}
-      </Grid>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <h3>{error}</h3>
+      ) : (
+        <Grid>
+          {products.map((product) => (
+            <GridItem key={product._id}>
+              <Link to={`/menu/${product._id}`}>
+                <GridImage src={`${product.image}`} alt={product.name} />
+                <GridName>
+                  <p>{product.category}</p>
+                  <Rating value={product.rating} />
+                </GridName>
+                <GridTitle>{product.name}</GridTitle>
+                <GridPrice>PRICE ${product.price}</GridPrice>
+              </Link>
+            </GridItem>
+          ))}
+        </Grid>
+      )}
       <div style={{ textAlign: "center", marginTop: "6rem" }}>
         <ProductButton>SEE ALL PRODUCTS</ProductButton>
       </div>

@@ -1,10 +1,14 @@
 import React from "react";
 import logo from "../img/LOGO.svg";
 import icon from "../img/Group.svg";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   // const currentRoute = useHistory().location.pathname.toLowerCase();
+
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
 
   return (
     <nav>
@@ -31,9 +35,10 @@ const Navbar = () => {
         <a href="/" className="button-brown">
           Order Online
         </a>
-        <a href="/">
+        <Link to="/cart">
           <img src={icon} alt="icon-shop" />
-        </a>
+          {cartItems.length > 0 && <span>{cartItems.length}</span>}
+        </Link>
       </div>
     </nav>
   );
