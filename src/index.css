@@ -939,3 +939,9 @@ main {
   margin-bottom: 4rem;
   width: 1170px;
 }
+
+.disabled-link {
+  cursor: not-allowed;
+  opacity: 0.5;
+  /* pointer-events: none; */
+}

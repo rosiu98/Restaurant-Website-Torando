@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import PageHero from "../components/PageHero";
 import FooterScreen from "../screens/FooterScreen";
 import GoogleMapReact from "google-map-react";
+import { saveShippingAddress } from "../actions/cartActions";
 import styled from "styled-components";
 import mapIcon from "../img/map-icon.svg";
 import mapPin from "../img/map-pin.svg";
@@ -13,10 +14,10 @@ import mapPin from "../img/map-pin.svg";
 import circleToPolygon from "circle-to-polygon";
 import HowItWorksScreen from "./HowItWorksScreen";
 import { ButtonAddToCart2 } from "./CartScreen";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 const Map = styled.section`
   margin: 0 auto;
-  margin-top: 15rem;
   width: 1170px;
   height: 400px;
 `;
@@ -47,24 +48,30 @@ const InputContainer = styled.div`
 `;
 
 const ShippingScreen = ({ history }) => {
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
   let places;
 
   const [coordinates, setCoordinates] = useState({});
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [country, setCountry] = useState("");
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [autocomplete, setAutocomplete] = useState("");
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [country, setCountry] = useState(shippingAddress.country);
 
-  const onLoad = (autoC) => setAddress(autoC);
+  const dispatch = useDispatch();
+
+  const onLoad = (autoC) => setAutocomplete(autoC);
 
   const onPlaceChanged = () => {
-    const lat = address.getPlace().geometry.location.lat();
-    const lng = address.getPlace().geometry.location.lng();
+    const lat = autocomplete.getPlace().geometry.location.lat();
+    const lng = autocomplete.getPlace().geometry.location.lng();
 
     let latitude = 50.10064848900932,
       longitude = 20.021011111934083;
 
-    places = address.getPlace();
+    places = autocomplete.getPlace().name;
 
     const point = turf.point([lng, lat]);
 
@@ -72,12 +79,11 @@ const ShippingScreen = ({ history }) => {
 
     const inPolygon = turf.inside(point, polygon);
 
-    console.log(places);
-
     setCoordinates({ lat, lng });
 
     if (inPolygon) {
       console.log("Jestes w kole");
+      setAddress(places);
     } else {
       console.log("Nie ma Cie w kole");
     }
@@ -121,10 +127,18 @@ const ShippingScreen = ({ history }) => {
     />
   );
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
+    history.push("/payment");
+  };
+
   return (
     <>
       <Navbar />
       <PageHero name={"SHIPPING"} title={"/ Shipping"} />
+
+      <CheckoutSteps step1 />
       <Map>
         <GoogleMapReact
           bootstrapURLKeys={{ key: "AIzaSyAZqlnwhZFwJtrdSNYhLGRB1SObg5T_fkc" }}
@@ -144,32 +158,43 @@ const ShippingScreen = ({ history }) => {
           )}
         </GoogleMapReact>
       </Map>
-      <div className="inputs-map">
+      <form className="inputs-map" onSubmit={submitHandler}>
         <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
           <InputContainer>
             <h2>Address</h2>
-            <input type="text" />
+            <input type="text" required />
           </InputContainer>
         </Autocomplete>
 
         <InputContainer>
           <h2>City</h2>
-          <input type="text" />
+          <input
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
         </InputContainer>
 
         <InputContainer>
           <h2>Postal Code</h2>
-          <input type="text" />
+          <input
+            type="text"
+            value={postalCode}
+            onChange={(e) => setPostalCode(e.target.value)}
+          />
         </InputContainer>
 
         <InputContainer>
           <h2>Country</h2>
-          <input type="text" />
+          <input
+            type="text"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
         </InputContainer>
-      </div>
-      <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-        <ButtonAddToCart2>Next</ButtonAddToCart2>
-      </div>
+        <ButtonAddToCart2 type="submit">Next</ButtonAddToCart2>
+      </form>
+      <div style={{ textAlign: "center", marginBottom: "4rem" }}></div>
 
       <HowItWorksScreen />
       <FooterScreen />
