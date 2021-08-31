@@ -28,6 +28,26 @@ const ButtonAddToCart = styled(Link)`
   }
 `;
 
+export const ButtonAddToCart2 = styled.button`
+  background-color: var(--color-yellow);
+  padding: 1.5rem 3rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border-radius: 2rem;
+  transition: 0.2s all;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 auto;
+  border: none;
+  font-family: "Roboto";
+
+  &:hover {
+    background-color: var(--color-brown);
+  }
+`;
+
 const EmptyCard = styled.div`
   text-align: center;
   min-height: 20vh;
@@ -194,9 +214,9 @@ const CartScreen = ({ match, location, history }) => {
                     </p>
                   </div>
                 </div>
-                <ButtonAddToCart onClick={checkoutHandler}>
+                <ButtonAddToCart2 onClick={checkoutHandler}>
                   Procced to checkout
-                </ButtonAddToCart>
+                </ButtonAddToCart2>
               </div>
             </div>
           </section>
