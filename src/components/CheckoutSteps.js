@@ -6,7 +6,7 @@ import complete from "../img/complete.svg";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 13rem;
+  padding-top: 13rem;
   margin-bottom: 2rem;
   gap: 3rem;
 
