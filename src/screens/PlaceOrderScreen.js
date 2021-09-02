@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { createOrder } from "../actions/orderActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { Message } from "../components/Message";
 import Navbar from "../components/Navbar";
 import PageHero from "../components/PageHero";
 import { ButtonAddToCart2 } from "./CartScreen";
 
-const PlaceOrderScreen = () => {
+const PlaceOrderScreen = ({ history }) => {
+  const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
 
   // Calculate prices
@@ -21,7 +24,28 @@ const PlaceOrderScreen = () => {
     Number(cart.itemsPrice) + Number(cart.shippingPrice)
   ).toFixed(2);
 
-  const placeOrderHandler = () => {};
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { order, success, error } = orderCreate;
+
+  useEffect(() => {
+    if (success) {
+      history.push(`/order/${order._id}`);
+    }
+    // eslint-disable-next-line
+  }, [history, success]);
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    );
+  };
 
   return (
     <>
@@ -79,6 +103,7 @@ const PlaceOrderScreen = () => {
             <div className="place-order-summary-item">
               <p>Total</p> <p>${cart.totalPrice}</p>
             </div>
+            {error && <Message color="red">{error}</Message>}
             <ButtonAddToCart2 onClick={placeOrderHandler}>
               Place Order
             </ButtonAddToCart2>
