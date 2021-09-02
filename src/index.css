@@ -1006,6 +1006,10 @@ main {
   text-align: center;
 }
 
+.order-items {
+  margin-top: 2.5rem;
+}
+
 .place-order-items .order-item {
   display: flex;
   align-items: center;
@@ -1044,6 +1048,11 @@ main {
 
 .order-image img {
   width: 100px;
+}
+
+.payment,
+.shipping {
+  margin-bottom: 2rem;
 }
 
 .shipping p,
