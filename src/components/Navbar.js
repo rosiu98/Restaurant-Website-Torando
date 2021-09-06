@@ -30,9 +30,6 @@ const Navbar = () => {
       </div>
 
       <div className="links">
-        {/* <Link className={currentRoute.includes("/") && "active"} to="/home">
-          HOME
-        </Link> */}
         <NavLink activeClassName="active" to="/" exact>
           HOME
         </NavLink>
@@ -68,6 +65,19 @@ const Navbar = () => {
                 <div onClick={logoutHandler} className="links-item">
                   Logout
                 </div>
+                {userInfo && userInfo.isAdmin && (
+                  <>
+                    <div className="links-item">
+                      <Link to="/admin/userlist">Users</Link>
+                    </div>
+                    <div className="links-item">
+                      <Link to="/admin/productlist">Products</Link>
+                    </div>
+                    <div className="links-item">
+                      <Link to="/admin/orderlist">Order List</Link>
+                    </div>
+                  </>
+                )}
               </div>
             )}
           </div>
