@@ -22,7 +22,7 @@ const Map = styled.section`
   height: 400px;
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   /* margin: 0 auto; */
   margin-top: 4rem;
   /* width: 1170px; */

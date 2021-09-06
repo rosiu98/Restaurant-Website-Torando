@@ -86,6 +86,17 @@ nav {
   border-radius: 2rem;
 }
 
+.btn-goback {
+  padding: 2rem 1.5rem;
+  color: var(--color-dark);
+  font-size: 1.5rem;
+  text-decoration: none;
+  border: 1px solid var(--color-brown);
+  margin: 5rem 0;
+  display: inline-block;
+  margin-left: 10%;
+}
+
 .button-yellow {
   background-color: var(--color-yellow);
   padding: 1.5rem 3rem;
@@ -105,9 +116,6 @@ nav {
   text-decoration: none;
   color: #000;
   cursor: pointer;
-}
-.one {
-  /* position: relative; */
 }
 
 .one::after {
@@ -1080,4 +1088,39 @@ main {
 
 .place-order-summary-item:last-child p {
   color: var(--color-dark);
+}
+
+.form-edit {
+  width: 1170px;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+}
+
+.form-edit button {
+  margin-top: 4rem;
+}
+
+.form-edit input {
+  width: 500px !important;
+}
+
+.form-edit label {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  gap: 4rem;
+
+  font-family: "Lilita One", cursive;
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #1e1d23;
+}
+
+.form-edit label input {
+  width: auto !important;
+}
+
+.form-edit h1 {
+  font-size: 3rem;
 }

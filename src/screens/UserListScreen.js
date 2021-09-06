@@ -75,7 +75,7 @@ const UserListScreen = ({ history }) => {
                     )}
                   </td>
                   <td data-label="f()">
-                    <Link to={`/user/${user._id}/edit`}>
+                    <Link to={`/admin/user/${user._id}/edit`}>
                       <i className="fas fa-edit"></i>
                     </Link>
                     <ButtonDelete onClick={() => deleteHandler(user._id)}>

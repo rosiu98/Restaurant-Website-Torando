@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PageHero from "../components/PageHero";
 import Rating from "../components/Rating";
-// import { products } from "../products";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
 import FooterScreen from "./FooterScreen";
